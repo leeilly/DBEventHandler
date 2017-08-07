@@ -15,14 +15,8 @@ tablemapping:
     targetName: MPDB.KAFKA_TEST_TARGET
 
   columns:
-  -
-    orgName: ID
-    targetName: target_ID
-  -
-    orgName: CH
-    targetName: target_CH
-  -
-    orgName: DTTM
-    tartgetName: target_DTTM
+    ID: target_ID
+    CH: target_CH
+    DTTM: target_DTTM
 
 

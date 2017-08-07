@@ -35,15 +35,26 @@ public class TableInfoMapper {
         if(table.getOrgName().equals(kafkalog.getTable())) {
 
             System.out.println("[TableMapper.table] : " + table.toString());
-            Map columnMap = kafkalog.getBeforeLog();
 
-            Iterator<String> keys = columnMap.keySet().iterator();
+            //yml에 정의 된 필드 명세
+            Map columnProperties = tableMappingProperties.getColumns();
+            Iterator<String> keys = columnProperties.keySet().iterator();
             while( keys.hasNext() ){
                 String key = keys.next();
-                System.out.println( String.format("column: %s,value: %s", key, columnMap.get(key)) );
+                System.out.println( String.format("columnProperties:: column: %s,value: %s", key, columnProperties.get(key)) );
             }
 
-           tableMappingProperties.getColumns();
+            //kafka log로 유입된 필드
+            Map columnMap = kafkalog.getBeforeLog();
+            Iterator<String> keys2 = columnMap.keySet().iterator();
+            while( keys2.hasNext() ){
+                String key = keys2.next();
+                String targetColumnName = String.valueOf(columnProperties.get(key));
+                String columnValue = String.valueOf(columnMap.get(key));
+
+                System.out.println( String.format("column: %s,value: %s", key, columnMap.get(key)) );
+                System.out.println("SQL:: " + "update "  + table.getTargetName() + " set " + targetColumnName + " = "  + columnValue );
+            }
 
 
 
