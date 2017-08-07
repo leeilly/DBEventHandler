@@ -1,0 +1,25 @@
+server:
+  port: 8011
+
+logging:
+  level:
+    root: INFO
+
+kafka.servers: localhost:9092
+kafka.consumer.group-id: test
+kafka.topic: test
+
+tablemapping:
+  table:
+    orgName: SKCPDBA.KAFKA_TEST_1
+    targetName: MPDB.KAFKA_TEST_TARGET
+
+  columns:
+  -
+    orgName: org_col1
+    targetName: target_col1
+  -
+    orgName: org_col2
+    targetName: target_col2
+
+
